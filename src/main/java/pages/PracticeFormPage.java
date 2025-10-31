@@ -41,6 +41,18 @@ public class PracticeFormPage extends BasePage {
     WebElement fieldCity;
     @FindBy(id = "submit")
     WebElement btnSubmit;
+    @FindBy(id = "example-modal-sizes-title-lg")
+    WebElement modalMessage;
+
+    public boolean validateModalMessage(){
+        return validateTextInElement(modalMessage,
+                "Thanks for submitting the form");
+    }
+
+    public boolean validateModalMessageNegative(){
+        return validateTextInElement(modalMessage,
+                "Negative");
+    }
 
     public void typePracticeForm(Student student) {
         hideBanner();
@@ -57,6 +69,7 @@ public class PracticeFormPage extends BasePage {
         fieldCurAddress.sendKeys(student.getAddress());
         typeStateCity(student.getState(), student.getCity());
         btnSubmit.click();
+
     }
 
     private void typeGender(Gender gender) {
